@@ -199,8 +199,34 @@ textarea{min-height:150px;resize:vertical;line-height:1.9}
 .rw{display:flex;gap:8px}
 .rw>*{flex:1}
 .rw select{flex:.8}
-#toast{position:fixed;left:50%;bottom:calc(100px + var(--sb));transform:translate(-50%,20px);background:#2c2c30;color:#fff;padding:11px 18px;border-radius:16px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:80;max-width:88%;text-align:center}
+#toast{position:fixed;left:50%;bottom:calc(100px + var(--sb));transform:translate(-50%,20px);background:#2c2c30;color:#fff;padding:11px 18px;border-radius:16px;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:80;max-width:88%;text-align:center;white-space:pre-line;line-height:1.8}
 #toast.on{opacity:1;transform:translate(-50%,0)}
+/* line-style habit icons */
+.hico{display:inline-block;line-height:1}
+html[data-ico=line] .hico{filter:url(#lnico) invert(var(--inv,1))}
+html[data-ico=line][data-mode=light] .hico,html[data-ico=line] .rc.dk .hico,html[data-ico=line] #cheer .chb .hico{--inv:0}
+/* cheer card */
+#cheer{position:fixed;left:50%;top:calc(12px + var(--sa));width:min(92%,440px);transform:translate(-50%,-150%);opacity:0;pointer-events:none;z-index:85;transition:transform .55s cubic-bezier(.2,.9,.25,1.12),opacity .3s}
+#cheer.on{transform:translate(-50%,0);opacity:1;pointer-events:auto;cursor:pointer}
+#cheer .chc{position:relative;display:flex;align-items:center;gap:14px;padding:14px 16px 20px;border-radius:24px;background:var(--sheet);border:1px solid var(--line);box-shadow:0 18px 40px -12px rgba(0,0,0,.65),0 0 0 1.5px var(--c),0 0 30px -8px var(--c)}
+#cheer .chc::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,var(--c),transparent 68%);opacity:.17;pointer-events:none}
+#cheer .chb{position:relative;flex:none;width:56px;height:56px;border-radius:19px;display:grid;place-items:center;font-size:29px;line-height:1;background:var(--c);box-shadow:0 8px 18px -6px var(--c)}
+#cheer.on .chb{animation:chpop .65s .12s cubic-bezier(.3,1.4,.5,1) both}
+#cheer .chb i{position:absolute;top:50%;left:50%;width:7px;height:7px;margin:-3.5px;border-radius:50%;background:var(--c);opacity:0;pointer-events:none}
+#cheer.on .chb i{animation:chspark .9s ease-out both}
+#cheer .chb em{position:absolute;bottom:-7px;left:-7px;width:23px;height:23px;border-radius:50%;background:var(--t);color:#06100f;font-style:normal;font-size:13px;font-weight:900;display:grid;place-items:center;border:2.5px solid var(--sheet)}
+#cheer .cht{position:relative;flex:1;min-width:0}
+#cheer .cht1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#cheer .cht1 b{font-size:15.5px;font-weight:800;color:var(--tx);max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#cheer .chs{font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:999px;background:rgba(255,128,64,.17);color:#ff9a5c;white-space:nowrap}
+#cheer .cht2{font-size:13.5px;line-height:1.9;color:var(--g);margin-top:3px}
+#cheer .chw{position:absolute;right:16px;left:16px;bottom:8px;height:4px;border-radius:4px;background:var(--line);overflow:hidden}
+#cheer .chm{display:block;height:100%;border-radius:4px;background:var(--c);transform-origin:right center}
+#cheer.on .chm{animation:chtm var(--d,4.8s) linear forwards}
+@keyframes chpop{0%{transform:scale(.3) rotate(-14deg)}60%{transform:scale(1.2) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
+@keyframes chspark{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2)}}
+@keyframes chtm{to{transform:scaleX(0)}}
+html[data-mode=light] #cheer .chc{box-shadow:0 14px 30px -12px rgba(16,21,28,.28),0 0 0 1.5px var(--c),0 0 22px -10px var(--c)}
 input[type=time]{text-align:center}
 .fz{display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(91,192,255,.1);border:1.5px dashed rgba(91,192,255,.45);border-radius:16px;padding:9px 12px;margin:16px 0 12px;font-size:12.5px;color:#a9dcff;line-height:1.7}
 .fz.on{background:rgba(91,192,255,.18);border-style:solid}
@@ -280,9 +306,6 @@ html[data-mode=light] .row{box-shadow:0 1px 0 rgba(16,21,28,.05)}
 .mseg{display:flex;background:var(--s2);border-radius:12px;padding:3px;gap:2px;flex:none}
 .mseg button{padding:7px 9px;font-size:12px;font-weight:700;border-radius:9px;color:var(--mu)}
 .mseg button.on{background:var(--y);color:#111}
-.lkm{font-style:normal;font-size:11px;opacity:.75;margin-right:3px}
-.cnb{display:flex;align-items:center;gap:12px;width:100%;text-align:right;background:linear-gradient(135deg,rgba(var(--yr),.13),rgba(var(--tr),.1));border:1px solid rgba(var(--yr),.3);border-radius:18px;padding:11px 14px;margin-bottom:12px}
-.cnb .ci{font-size:24px;flex:none}.cnb .cm{flex:1;min-width:0}.cnb .cl{font-size:13px;line-height:1.9;color:var(--tx)}.cnb .cl.neg{color:#ff8a80}.cnb .ar{color:var(--mu);font-size:20px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -292,6 +315,8 @@ html[data-mode=light] .row{box-shadow:0 1px 0 rgba(16,21,28,.05)}
 <nav class="nav" id="nav"></nav>
 <div id="bg"><div id="sheet"><div class="grab"></div><div id="sb"></div></div></div>
 <div id="toast"></div>
+<div id="cheer" role="status" aria-live="polite"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><filter id="lnico" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feFlood flood-color="#000" result="bk"/><feComposite in="SourceGraphic" in2="bk" operator="over" result="op"/><feColorMatrix in="op" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  .33 .33 .33 0 0" result="lum"/><feMorphology in="lum" operator="dilate" radius="0.6" result="d1"/><feMorphology in="lum" operator="erode" radius="0.6" result="e1"/><feComposite in="d1" in2="e1" operator="arithmetic" k1="0" k2="1" k3="-1" k4="0" result="g1"/><feMorphology in="SourceAlpha" operator="dilate" radius="0.6" result="d2"/><feMorphology in="SourceAlpha" operator="erode" radius="0.6" result="e2"/><feComposite in="d2" in2="e2" operator="arithmetic" k1="0" k2="1" k3="-1" k4="0" result="g2"/><feComposite in="g1" in2="g2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0" result="sum"/><feColorMatrix in="sum" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 7 -0.7"/></filter></defs></svg>
 <div id="foc"></div>
 <div id="cel"><div id="conf"></div><div class="cc"><span class="cem">🏆</span><h2 id="celh">همه‌ی عادت‌های امروز کامل شد!</h2><p id="celq"></p><button class="btn" data-celx="1">ادامه</button></div></div>
 
@@ -306,6 +331,7 @@ const fromIso=s=>{const a=s.split('-').map(Number);return new Date(a[0],a[1]-1,a
 const addDays=(s,n)=>{const d=fromIso(s);d.setDate(d.getDate()+n);return iso(d)};
 const wd=s=>(fromIso(s).getDay()+1)%7; // Saturday = 0
 const todayIso=()=>iso(new Date());
+const hi=e=>'<span class="hico">'+e+'</span>';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const toEn=s=>String(s).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/٫/g,'.').replace(/[٬,،\s]/g,'');
 const num=s=>{const v=parseFloat(toEn(s));return isFinite(v)?v:NaN};
@@ -338,7 +364,7 @@ function seed(){const t=todayIso();const all=[0,1,2,3,4,5,6];return{v:1,habits:[
 logs:{},notes:{},set:{vib:true},timer:null}}
 let D;
 let memOnly=false;
-function norm(o){o.logs=o.logs||{};o.notes=o.notes||{};o.set=Object.assign({vib:true,theme:'gold',mode:'dark',snd:true,notif:false,nudge:true,nudgeT:'21:00'},o.set||{});o.frozen=o.frozen||{};o.sub=o.sub||{};o.chal=o.chal||[];o.badges=o.badges||{};o.cel=o.cel||{};o.stats=o.stats||{timerMin:0};o.habits.forEach(h=>{if(h.rm===undefined)h.rm='';if(h.lk&&h.lk.k==='bud')delete h.lk});return o}
+function norm(o){o.logs=o.logs||{};o.notes=o.notes||{};o.set=Object.assign({vib:true,theme:'gold',mode:'dark',snd:true,notif:false,nudge:true,nudgeT:'21:00',ico:'normal'},o.set||{});o.frozen=o.frozen||{};o.sub=o.sub||{};o.chal=o.chal||[];o.badges=o.badges||{};o.cel=o.cel||{};o.stats=o.stats||{timerMin:0};o.habits.forEach(h=>{if(h.rm===undefined)h.rm='';delete h.lk});return o}
 function load(){try{const r=localStorage.getItem(KEY);if(r){const o=JSON.parse(r);if(o&&Array.isArray(o.habits)){norm(o);const MC={'#ffd60a':'#ffd23f','#14d1c4':'#1fd1c1','#81d8d0':'#7ee8d2','#4fb3d9':'#5bc0ff','#c7c7cc':'#a9b4c8','#8e9aa6':'#7c8da6','#ffb800':'#ffb547','#f0f0f0':'#edeff3'};o.habits.forEach(h=>{if(MC[h.c])h.c=MC[h.c]});return o}}}catch(e){memOnly=true}return norm(seed())}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){if(!memOnly){memOnly=true;toast('حافظه‌ی مرورگر در دسترس نیست؛ داده‌ها بعد از بستن صفحه می‌روند.')}}}
 D=load();save();
@@ -346,8 +372,8 @@ const R={tab:'home',sel:todayIso(),flt:'all',stF:null,stY:0,stM:0,sheet:null};
 {const j=jp(todayIso());R.stY=j[0];R.stM=j[1];R.hy=j[0]}
 
 const H=id=>D.habits.find(h=>h.id===id);
-const val=(id,d)=>{const h=H(id);if(h&&h.lk){if(h.lk.k==='tx')return Math.min(h.tg,cnIdx().cnt[d]||0)}return(D.logs[d]&&D.logs[d][id])||0};
-function setVal(id,d,v){const h0=H(id);if(isAuto(h0))return;v=Math.max(0,Math.round(v*100)/100);const old=val(id,d);if(!D.logs[d])D.logs[d]={};if(v)D.logs[d][id]=v;else delete D.logs[d][id];if(!Object.keys(D.logs[d]).length)delete D.logs[d];if(h0&&h0.lk&&h0.lk.k==='goal'&&v!==old)cnDeposit(h0.lk.gid,v-old);save();checkBadges()}
+const val=(id,d)=>(D.logs[d]&&D.logs[d][id])||0;
+function setVal(id,d,v){v=Math.max(0,Math.round(v*100)/100);if(!D.logs[d])D.logs[d]={};if(v)D.logs[d][id]=v;else delete D.logs[d][id];if(!Object.keys(D.logs[d]).length)delete D.logs[d];save();checkBadges()}
 const prog=(h,d)=>Math.min(1,val(h.id,d)/h.tg);
 const active=(h,d)=>h.days.includes(wd(d))&&d>=h.cr;
 function dayStat(d,hid){if(D.frozen[d])return{n:0,p:0,done:false,fz:true};const hs=hid?D.habits.filter(h=>h.id===hid):D.habits;const a=hs.filter(h=>active(h,d));if(!a.length)return{n:0,p:0,done:false};let s=0,all=true;a.forEach(h=>{const p=prog(h,d);s+=p;if(p<1)all=false});return{n:a.length,p:s/a.length,done:all}}
@@ -364,14 +390,14 @@ function ring(p,r){r=r||15;const C=2*Math.PI*r;return '<svg viewBox="0 0 36 36">
 const rg=(st,txt,extra)=>'<span class="rg'+(st.n&&st.p>=1?' full':'')+(st.n?'':' none')+(st.n&&st.p<=0?' z':'')+(extra||'')+'">'+ring(st.n?st.p:0)+'<b>'+txt+'</b></span>';
 function rowHTML(h,v,interactive,sk){
  const p=Math.min(1,v/h.tg);
- const inner=(btn)=>'<span class="ri">'+h.e+'</span><span class="rn">'+esc(h.n)+(sk>=2?' <em class="sk" dir="ltr">🔥'+sk+'</em>':'')+(h.lk?' <i class="lkm">🔗</i>':'')+'</span><span class="rv num">'+(p>=1?'✓ ':'')+valText(h,v)+'</span>'+(btn?'<b class="mb" data-more="'+h.id+'" aria-label="جزئیات">⋯</b>':'<i class="mb">⋯</i>');
+ const inner=(btn)=>'<span class="ri hico">'+h.e+'</span><span class="rn">'+esc(h.n)+(sk>=2?' <em class="sk" dir="ltr">🔥'+sk+'</em>':'')+'</span><span class="rv num">'+(p>=1?'✓ ':'')+valText(h,v)+'</span>'+(btn?'<b class="mb" data-more="'+h.id+'" aria-label="جزئیات">⋯</b>':'<i class="mb">⋯</i>');
  return '<div class="row'+(p>=1?' done':'')+'" '+(interactive?'data-row="'+h.id+'" ':'')+'style="--c:'+h.c+';background:'+hexA(h.c,.16)+'"><div class="fill" style="width:'+(p*100).toFixed(1)+'%"><div class="rc dk" aria-hidden="true">'+inner(false)+'</div></div><div class="rc lt">'+inner(interactive)+'</div></div>'}
 
 /* ---------- toast / sheet ---------- */
 let tt;
 let askFn=null;
 function askSheet(title,msg,okText,fn){R.sheet={t:'ask'};askFn=fn;openSheet('<div class="sh"><span class="e">⚠️</span><div><b>'+title+'</b></div></div><p style="color:var(--g);font-size:14px;line-height:2;margin:4px 2px 18px">'+msg+'</p><div class="two"><button class="btn r blk" data-askok="1">'+okText+'</button><button class="btn g blk" data-askno="1">انصراف</button></div>')}
-function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2200)}
+function toast(m,ms){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),ms||2200)}
 function openSheet(html){$('#sb').innerHTML=html;$('#bg').classList.add('on');$('#sheet').scrollTop=0}
 function closeSheet(){$('#bg').classList.remove('on');R.sheet=null;$('#sb').innerHTML=''}
 
@@ -416,7 +442,7 @@ function vHome(){
  +'<div class="wk"><button data-wk="-1" aria-label="هفته قبل">›</button><span class="num">'+wj1[2]+' '+JM[wj1[1]-1]+' تا '+wj2[2]+' '+JM[wj2[1]-1]+'</span><button data-wk="1" aria-label="هفته بعد">‹</button></div>'
  +'<div class="strip" id="strip">'+strip+'</div>'
  +'<div class="sum"><div class="l"><span>'+(all.length?'<b class="num">'+doneN+'</b> از <b class="num">'+all.length+'</b> عادت کامل شد':'—')+'</span><b class="num">'+Math.round(avg*100)+'%'+'</b></div><div class="bar"><i style="width:'+(avg*100).toFixed(1)+'%"></i></div></div>'
- +cnBanner()+nudge+tb+'<div>'+body+'</div>'+cuRow+fzRow}
+ +nudge+tb+'<div>'+body+'</div>'+cuRow+fzRow}
 
 function clock(ms){const s=Math.floor(ms/1000);return pad(Math.floor(s/3600))+':'+pad(Math.floor(s%3600/60))+':'+pad(s%60)}
 
@@ -435,11 +461,11 @@ function vStats(){
  days.forEach((d,i)=>{const st=dayStat(d,f);cells+='<button class="cd'+(d>T?' fut':'')+(d===R.sel?' sel':'')+'" data-go="'+d+'">'+rg(st,st.fz?'❄':i+1)+(d===T?'<i></i>':'')+'</button>'});
  const r=rate(f,days);const sk=streaks(f);
  const perfect=days.filter(d=>d<=T&&dayStat(d,f).n&&dayStat(d,f).done).length;
- let chips='<button class="chip txt'+(f?'':' on')+'" data-sf="">همه</button>'+D.habits.map(h=>'<button class="chip'+(f===h.id?' on':'')+'" data-sf="'+h.id+'" aria-label="'+esc(h.n)+'">'+h.e+'</button>').join('');
+ let chips='<button class="chip txt'+(f?'':' on')+'" data-sf="">همه</button>'+D.habits.map(h=>'<button class="chip'+(f===h.id?' on':'')+'" data-sf="'+h.id+'" aria-label="'+esc(h.n)+'">'+hi(h.e)+'</button>').join('');
  let wb='';
  for(let i=6;i>=0;i--){const d=addDays(T,-i),st=dayStat(d,f);wb+='<div><i class="'+(st.n?(st.p>=1?'f':''):'z')+'" style="height:'+Math.max(4,st.p*100)+'%"></i><span class="num">'+jp(d)[2]+'</span></div>'}
  let brk='';
- if(!f&&D.habits.length)brk='<div class="card"><h3>عملکرد این ماه به تفکیک عادت</h3>'+D.habits.map(h=>{const p=rate(h.id,days);return '<div class="hb"><span class="e">'+h.e+'</span><div class="m"><div><span>'+esc(h.n)+'</span><b class="num">'+Math.round(p*100)+'%</b></div><div class="bar"><i style="width:'+(p*100)+'%;background:'+h.c+'"></i></div></div></div>'}).join('')+'</div>';
+ if(!f&&D.habits.length)brk='<div class="card"><h3>عملکرد این ماه به تفکیک عادت</h3>'+D.habits.map(h=>{const p=rate(h.id,days);return '<div class="hb"><span class="e hico">'+h.e+'</span><div class="m"><div><span>'+esc(h.n)+'</span><b class="num">'+Math.round(p*100)+'%</b></div><div class="bar"><i style="width:'+(p*100)+'%;background:'+h.c+'"></i></div></div></div>'}).join('')+'</div>';
  const hh=f?H(f):null;
  const w7=[],p7=[];for(let i=0;i<7;i++){w7.push(addDays(T,-i));p7.push(addDays(T,-7-i))}
  const r7=rate(f,w7),rp=rate(f,p7),dl=Math.round((r7-rp)*100);
@@ -461,7 +487,7 @@ function sched(h){return h.days.length===7?'هر روز':h.days.map(i=>WS[i]).jo
 function tgText(h){if(h.ty==='chk')return h.st.length+' مرحله';return h.ty==='cnt'?nf(h.tg)+' بار':h.ty==='min'?fmin(h.tg):nf(h.tg)+(h.u?' '+h.u:'')}
 function sk2(h){return streaks(h.id).cur}
 function vHabits(){
- const items=D.habits.map((h,i)=>'<div class="hl" data-edit="'+h.id+'"><span class="e" style="background:'+hexA(h.c,.18)+'">'+h.e+'</span><div class="m"><b>'+esc(h.n)+'</b><span class="num">'+tgText(h)+' · '+sched(h)+(h.rm?' · ⏰ '+h.rm:'')+(sk2(h)>=2?' · 🔥 '+sk2(h):'')+'</span></div><div class="mv"><button data-mv="'+h.id+':-1" aria-label="بالا">▲</button><button data-mv="'+h.id+':1" aria-label="پایین">▼</button></div></div>').join('');
+ const items=D.habits.map((h,i)=>'<div class="hl" data-edit="'+h.id+'"><span class="e" style="background:'+hexA(h.c,.18)+'">'+hi(h.e)+'</span><div class="m"><b>'+esc(h.n)+'</b><span class="num">'+tgText(h)+' · '+sched(h)+(h.rm?' · ⏰ '+h.rm:'')+(sk2(h)>=2?' · 🔥 '+sk2(h):'')+'</span></div><div class="mv"><button data-mv="'+h.id+':-1" aria-label="بالا">▲</button><button data-mv="'+h.id+':1" aria-label="پایین">▼</button></div></div>').join('');
  return '<div class="hd"><div class="ttl"><h1>عادت‌های من</h1><small>برای ویرایش روی هر عادت بزن</small></div></div>'+(items||'<div class="empty"><span class="em">🌱</span>هنوز عادتی نساخته‌ای.</div>')+'<button class="btn blk" data-add="1" style="margin-top:6px">+ عادت جدید</button>'+chalCard()}
 
 /* notes */
@@ -477,7 +503,7 @@ function vNotes(){
 /* settings */
 function render(){
  const f={home:vHome,stats:vStats,habits:vHabits,notes:vNotes,set:vSet}[R.tab];
- CN=null;const y=window.scrollY;$('#v').innerHTML=f();renderNav();if(R.tab==='stats')heatScroll();
+ const y=window.scrollY;$('#v').innerHTML=f();renderNav();if(R.tab==='stats')heatScroll();
  if(R.keepScroll){window.scrollTo(0,y)}
 }
 
@@ -486,7 +512,6 @@ function niceStep(t){const x=t/10;const p=Math.pow(10,Math.floor(Math.log10(Math
 function logSheet(id){
  const h=H(id);if(!h){closeSheet();return}
  R.sheet={t:'log',id:id};
- if(isAuto(h)){autoSheet(h);return}
  if(h.ty==='chk'){chkSheet(h);return}
  const d=R.sel,v=val(id,d);
  let q;
@@ -498,7 +523,7 @@ function logSheet(id){
   else if(D.timer)timer='<p style="text-align:center;color:var(--mu);font-size:13px;margin:6px 0">تایمر یک عادت دیگر در حال اجراست.</p>';
   else timer='<button class="btn t blk" data-tstart="'+id+'">▶ شروع تایمر</button>'}
  if(h.ty==='min'&&(!D.timer||D.timer.id===id))timer+='<button class="btn g blk" data-focus="'+id+'" style="margin-top:8px">🎯 حالت تمرکز</button>';
- openSheet('<div class="sh"><span class="e">'+h.e+'</span><div><b>'+esc(h.n)+'</b><span class="num">'+WD[wd(d)]+' '+jl(d)+'</span></div></div>'
+ openSheet('<div class="sh"><span class="e hico">'+h.e+'</span><div><b>'+esc(h.n)+'</b><span class="num">'+WD[wd(d)]+' '+jl(d)+'</span></div></div>'
  +'<div class="big">'+rowHTML(h,v,false)+'</div>'+(h.ty==='amt'?'<p class="num" style="text-align:center;color:var(--mu);font-size:13px;margin-top:10px">'+valText(h,v,true)+'</p>':'')
  +'<div class="qs">'+q.map(x=>'<button class="'+(x>0?'p':'m')+' num" data-dl="'+x+'">'+(x>0?'+':'−')+nf(Math.abs(x))+'</button>').join('')+'</div>'
  +timer
@@ -508,16 +533,11 @@ function refreshLog(){if(R.sheet&&R.sheet.t==='log'){const y=$('#sheet').scrollT
 
 /* ---------- edit sheet ---------- */
 let F=null;
-function newForm(){return{id:null,n:'',e:EMOJI[0],c:COLORS[1],ty:'cnt',tv:'',tu:'m',u:'',rm:'',st:'',lk:'',gid:'',days:[0,1,2,3,4,5,6]}}
-function formFrom(h){const f={id:h.id,n:h.n,e:h.e,c:h.c,ty:h.ty,u:h.u||'',days:h.days.slice(),rm:h.rm||'',st:(h.st||[]).join('\n'),lk:h.lk?h.lk.k:'',gid:h.lk&&h.lk.gid||'',tu:'m',tv:String(h.tg)};if(h.ty==='min'&&h.tg%60===0){f.tu='h';f.tv=String(h.tg/60)}return f}
-function sync(){if(!F||!$('#fn'))return;F.n=$('#fn').value;if($('#ft'))F.tv=$('#ft').value;if($('#fu'))F.u=$('#fu').value;if($('#fe')&&$('#fe').value.trim())F.e=Array.from($('#fe').value.trim())[0]||F.e;if($('#ftu'))F.tu=$('#ftu').value;if($('#fr'))F.rm=$('#fr').value;if($('#fst'))F.st=$('#fst').value;if($('#flk'))F.lk=$('#flk').value;if($('#fgl'))F.gid=$('#fgl').value}
+function newForm(){return{id:null,n:'',e:EMOJI[0],c:COLORS[1],ty:'cnt',tv:'',tu:'m',u:'',rm:'',st:'',days:[0,1,2,3,4,5,6]}}
+function formFrom(h){const f={id:h.id,n:h.n,e:h.e,c:h.c,ty:h.ty,u:h.u||'',days:h.days.slice(),rm:h.rm||'',st:(h.st||[]).join('\n'),tu:'m',tv:String(h.tg)};if(h.ty==='min'&&h.tg%60===0){f.tu='h';f.tv=String(h.tg/60)}return f}
+function sync(){if(!F||!$('#fn'))return;F.n=$('#fn').value;if($('#ft'))F.tv=$('#ft').value;if($('#fu'))F.u=$('#fu').value;if($('#fe')&&$('#fe').value.trim())F.e=Array.from($('#fe').value.trim())[0]||F.e;if($('#ftu'))F.tu=$('#ftu').value;if($('#fr'))F.rm=$('#fr').value;if($('#fst'))F.st=$('#fst').value}
 function formSheet(){
  R.sheet={t:'form'};
- let lkui='';
- if(IN){const goals=cnGet(CNKEY.goal,[]);
-  lkui='<div class="lbl">🔗 اتصال به کندو</div><select id="flk"><option value="">بدون اتصال</option><option value="goal"'+(F.lk==='goal'?' selected':'')+'>💰 واریز به هدف پس‌انداز</option><option value="tx"'+(F.lk==='tx'?' selected':'')+'>🧾 خودکار: تراکنش ثبت کردم</option></select>'
-  +(F.lk==='goal'?(goals.length?'<select id="fgl" style="margin-top:8px">'+goals.map(g=>'<option value="'+g.id+'"'+(String(F.gid)===String(g.id)?' selected':'')+'>'+esc((g.e||'🎯')+' '+g.n)+'</option>').join('')+'</select><p style="color:var(--mu);font-size:12px;line-height:1.9;margin-top:6px">هر مبلغی که برای این عادت ثبت کنی، به همان هدف در کندو اضافه می‌شود.</p>':'<p style="color:var(--mu);font-size:12px;margin-top:6px">هنوز هدف پس‌اندازی در کندو نساخته‌ای.</p>'):'')
-  +(F.lk==='tx'?'<p style="color:var(--mu);font-size:12px;line-height:1.9;margin-top:6px">با هر تراکنشی که در کندو ثبت کنی، خودکار پر می‌شود. «هدف روزانه» را تعداد تراکنش بگذار.</p>':'')}
  const em=EMOJI.slice();if(!em.includes(F.e))em.unshift(F.e);
  let tg;
  if(F.ty==='cnt')tg='<input id="ft" inputmode="decimal" placeholder="چند بار در روز؟ مثلاً 8" value="'+esc(F.tv)+'">';
@@ -530,20 +550,16 @@ function formSheet(){
  +'<div class="lbl">رنگ</div><div class="grid c">'+COLORS.map(c=>'<button data-fc="'+c+'" class="'+(F.c===c?'on':'')+'" style="background:'+c+'" aria-label="رنگ"></button>').join('')+'</div>'
  +'<div class="lbl">نوع هدف</div><div class="seg"><button data-ft="cnt" class="'+(F.ty==='cnt'?'on':'')+'">تعدادی</button><button data-ft="min" class="'+(F.ty==='min'?'on':'')+'">زمانی</button><button data-ft="amt" class="'+(F.ty==='amt'?'on':'')+'">مقداری</button><button data-ft="chk" class="'+(F.ty==='chk'?'on':'')+'">مراحل</button></div>'
  +'<div class="lbl">هدف روزانه</div>'+tg
- +lkui
  +'<div class="lbl">⏰ یادآور (اختیاری)</div><div class="rw"><input id="fr" type="time" value="'+esc(F.rm||'')+'"><button class="btn g" data-frc="1" style="flex:.5">حذف</button></div>'
  +'<div class="lbl">روزهای هفته</div><div class="dys">'+WS.map((w,i)=>'<button data-fd="'+i+'" class="'+(F.days.includes(i)?'on':'')+'" aria-label="'+WD[i]+'">'+w+'</button>').join('')+'</div>'
  +'<div class="two" style="margin-top:22px"><button class="btn blk" data-fsave="1">'+(F.id?'ذخیره‌ی تغییرات':'ساخت عادت')+'</button>'+(F.id?'<button class="btn r blk" data-fdel="1" style="flex:.55">حذف</button>':'')+'</div>')}
 function openForm(id){F=id?formFrom(H(id)):newForm();formSheet();if(!id)setTimeout(()=>{const n=$('#fn');if(n)n.focus()},300)}
 function saveForm(){
  sync();const name=F.n.trim();if(!name){toast('اسم عادت را بنویس');return}
- if(F.lk==='goal'&&F.ty!=='amt'){toast('برای واریز به هدف، نوع هدف را «مقداری» بگذار');return}
- if(F.lk==='tx'&&F.ty!=='cnt'){toast('برای عادت خودکار، نوع هدف را «تعدادی» بگذار');return}
- if(F.lk==='goal'&&!F.gid){toast('یک هدف پس‌انداز انتخاب کن');return}
  let t;if(F.ty==='chk'){const stp=F.st.split('\n').map(x=>x.trim()).filter(Boolean);if(!stp.length){toast('حداقل یک مرحله بنویس');return}t=stp.length;F._st=stp}else{t=num(F.tv);if(!(t>0)){toast('هدف روزانه باید عددی بزرگ‌تر از صفر باشد');return}}
  if(F.ty==='min'&&F.tu==='h')t*=60;
  if(!F.days.length){toast('حداقل یک روز را انتخاب کن');return}
- const o={n:name,e:F.e,c:F.c,ty:F.ty,tg:t,u:F.ty==='amt'?F.u.trim():'',rm:F.rm||'',st:F.ty==='chk'?F._st:[],lk:F.lk==='goal'?{k:'goal',gid:F.gid}:F.lk==='tx'?{k:'tx'}:undefined,days:F.days.slice().sort()};
+ const o={n:name,e:F.e,c:F.c,ty:F.ty,tg:t,u:F.ty==='amt'?F.u.trim():'',rm:F.rm||'',st:F.ty==='chk'?F._st:[],days:F.days.slice().sort()};
  if(F.id){Object.assign(H(F.id),o)}
  else{const T=todayIso();D.habits.push(Object.assign({id:uid(),cr:R.sel<T?R.sel:T},o))}
  save();closeSheet();render();toast(F.id?'تغییرات ذخیره شد':'عادت ساخته شد')}
@@ -551,7 +567,7 @@ function saveForm(){
 /* ---------- timer ---------- */
 function stopTimer(){
  const t=D.timer;if(!t)return;const h=H(t.id);const ms=Date.now()-t.start;D.timer=null;
- if(h&&ms>=30000){const m=Math.max(1,Math.round(ms/60000));const d=iso(new Date(t.start));D.stats.timerMin=(D.stats.timerMin||0)+m;setVal(t.id,d,val(t.id,d)+m);toast(m+' دقیقه ثبت شد')}
+ if(h&&ms>=30000){const m=Math.max(1,Math.round(ms/60000));const d=iso(new Date(t.start));D.stats.timerMin=(D.stats.timerMin||0)+m;const b4=val(t.id,d);setVal(t.id,d,b4+m);toast(m+' دقیقه ثبت شد');if(b4<h.tg&&val(t.id,d)>=h.tg)setTimeout(()=>cheer(h),1300)}
  else{save();toast('زمان خیلی کوتاه بود؛ ثبت نشد')}
  closeFocus();render();refreshLog();checkAllDone()}
 setInterval(()=>{if(!D.timer)return;const a=$('#tbt'),b=$('#tmv'),s=clock(Date.now()-D.timer.start);if(a)a.textContent=s;if(b)b.textContent=s;if(R.focus)updFocus()},1000);
@@ -573,7 +589,7 @@ document.addEventListener('pointerdown',e=>{const r=e.target.closest('[data-row]
 let dg=null;
 function snapV(h,v,v0){const mx=Math.max(h.tg,v0);v=Math.max(0,Math.min(mx,v));if(h.ty==='cnt')return Math.round(v);if(h.ty==='min'){const st=h.tg>=60?5:1;return Math.min(mx,Math.round(v/st)*st)}const st=niceStep(h.tg);return Math.min(mx,Math.round(v/st)*st)}
 function paintRow(el,h,v){const p=Math.min(1,v/h.tg);el.querySelector('.fill').style.width=(p*100).toFixed(1)+'%';el.querySelectorAll('.rv').forEach(x=>{x.innerHTML=(p>=1?'✓ ':'')+valText(h,v)});el.classList.toggle('done',p>=1)}
-document.addEventListener('pointerdown',e=>{const r=e.target.closest('[data-row]');if(!r||e.target.closest('[data-more]'))return;const hh=H(r.dataset.row);if(!hh||hh.ty==='chk'||isAuto(hh))return;dg={el:r,id:r.dataset.row,x:e.clientX,y:e.clientY,w:r.getBoundingClientRect().width,v0:val(r.dataset.row,R.sel),on:false,v:null,pid:e.pointerId}});
+document.addEventListener('pointerdown',e=>{const r=e.target.closest('[data-row]');if(!r||e.target.closest('[data-more]'))return;const hh=H(r.dataset.row);if(!hh||hh.ty==='chk')return;dg={el:r,id:r.dataset.row,x:e.clientX,y:e.clientY,w:r.getBoundingClientRect().width,v0:val(r.dataset.row,R.sel),on:false,v:null,pid:e.pointerId}});
 document.addEventListener('pointermove',e=>{if(!dg)return;const dx=e.clientX-dg.x,dy=e.clientY-dg.y;
  if(!dg.on){if(Math.abs(dx)>10&&Math.abs(dx)>Math.abs(dy)*1.3){dg.on=true;clearTimeout(lpT);lp=false;R.dragged=true;dg.el.classList.add('dg');try{dg.el.setPointerCapture(dg.pid)}catch(x){}}else return}
  const h=H(dg.id);if(!h)return;const nv=snapV(h,dg.v0+(-dx/dg.w)*h.tg,dg.v0);if(nv!==dg.v){dg.v=nv;paintRow(dg.el,h,nv);if(navigator.vibrate&&D.set.vib&&(h.ty==='cnt'||Math.abs(nv-dg.v0)%(h.tg/4)<1e-9))try{navigator.vibrate(5)}catch(x){}}});
@@ -585,7 +601,7 @@ document.addEventListener('click',e=>{
  if(t.closest('#fab')){openForm(null);return}
  if(el=t.closest('[data-nav]')){go(el.dataset.nav);return}
  if(el=t.closest('[data-more]')){logSheet(el.dataset.more);return}
- if(el=t.closest('[data-row]')){if(lp){lp=false;return}const h=H(el.dataset.row);if(!h)return;if(isAuto(h)){autoSheet(h);return}if(h.ty==='cnt')bump(h.id,1);else logSheet(h.id);return}
+ if(el=t.closest('[data-row]')){if(lp){lp=false;return}const h=H(el.dataset.row);if(!h)return;if(h.ty==='cnt')bump(h.id,1);else logSheet(h.id);return}
  if(el=t.closest('[data-d]')){R.sel=el.dataset.d;render();return}
  if(t.closest('[data-today]')){R.sel=todayIso();render();return}
  if(t.closest('[data-flt]')){R.flt={all:'todo',todo:'done',done:'all'}[R.flt];render();return}
@@ -612,12 +628,14 @@ document.addEventListener('click',e=>{
  if(el=t.closest('[data-focus]')){showFocus(el.dataset.focus);return}
  if(t.closest('[data-fclose]')){closeFocus();return}
  if(t.closest('[data-fstop]')){stopTimer();return}
+ if(t.closest('#cheer')){hideCheer();return}
  if(t.closest('[data-celx]')||t.id==='cel'){$('#cel').classList.remove('on');return}
  if(t.closest('[data-frc]')){sync();F.rm='';formSheet();return}
  if(t.closest('[data-rep]')){reportSheet(R.stY,R.stM);return}
  if(t.closest('[data-rimg]')){drawReport(R.stY,R.stM);return}
  if(el=t.closest('[data-yn]')){R.hy+=+el.dataset.yn;render();return}
  if(el=t.closest('[data-md]')){D.set.mode=el.dataset.md;save();applyTheme();render();return}
+ if(el=t.closest('[data-ic]')){D.set.ico=el.dataset.ic;save();applyTheme();render();return}
  if(t.closest('[data-snd]')){D.set.snd=!D.set.snd;save();if(D.set.snd)chime(false);render();return}
  if(t.closest('[data-csv]')){exportCsv();return}
  if(t.closest('[data-csvin]')){$('#csvf').click();return}
@@ -629,10 +647,9 @@ document.addEventListener('click',e=>{
  if(el=t.closest('[data-ct]')){syncC();C.t=+el.dataset.ct;chalSheet();return}
  if(t.closest('[data-chsave]')){saveChal();return}
  if(t.closest('[data-chdel]')){const cid=C.id;askSheet('حذف چالش','این چالش حذف می‌شود. عادت و سوابقش سر جایشان می‌مانند.','حذف',()=>{D.chal=D.chal.filter(x=>x.id!==cid);save();closeSheet();render();toast('چالش حذف شد')});return}
- if(t.closest('[data-opencn]')){goCN();return}
  /* log sheet */
- if(el=t.closest('[data-dl]')){const h=H(R.sheet.id);setVal(h.id,R.sel,val(h.id,R.sel)+ +el.dataset.dl);vib();render();refreshLog();checkAllDone();return}
- if(t.closest('[data-cadd]')||t.closest('[data-cset]')){const h=H(R.sheet.id);let v=num($('#cv').value);if(!isFinite(v)||v<0){toast('یک عدد معتبر وارد کن');return}const set=!!t.closest('[data-cset]');setVal(h.id,R.sel,set?v:val(h.id,R.sel)+v);vib();render();refreshLog();checkAllDone();return}
+ if(el=t.closest('[data-dl]')){const h=H(R.sheet.id),b4=val(h.id,R.sel);setVal(h.id,R.sel,b4+ +el.dataset.dl);vib();render();refreshLog();if(b4<h.tg&&val(h.id,R.sel)>=h.tg)cheer(h);checkAllDone();return}
+ if(t.closest('[data-cadd]')||t.closest('[data-cset]')){const h=H(R.sheet.id);let v=num($('#cv').value);if(!isFinite(v)||v<0){toast('یک عدد معتبر وارد کن');return}const set=!!t.closest('[data-cset]'),b4=val(h.id,R.sel);setVal(h.id,R.sel,set?v:b4+v);vib();render();refreshLog();if(b4<h.tg&&val(h.id,R.sel)>=h.tg)cheer(h);checkAllDone();return}
  if(el=t.closest('[data-zero]')){setVal(el.dataset.zero,R.sel,0);if(D.sub[R.sel])delete D.sub[R.sel][el.dataset.zero];render();refreshLog();return}
  if(el=t.closest('[data-tstart]')){D.timer={id:el.dataset.tstart,start:Date.now()};save();vib();render();refreshLog();toast('تایمر شروع شد');return}
  if(t.closest('[data-tstop]')){stopTimer();return}
@@ -647,7 +664,7 @@ document.addEventListener('click',e=>{
 document.addEventListener('input',e=>{
  if(e.target.id==='ntx'){clearTimeout(R.nt);const v=e.target.value,d=R.sel;R.nt=setTimeout(()=>{const n=D.notes[d]||{t:'',m:0};n.t=v;if(n.t.trim()||n.m)D.notes[d]=n;else delete D.notes[d];save();checkBadges()},350)}
 });
-document.addEventListener('change',e=>{if(e.target.id==='flk'){sync();if(F.lk==='goal'){F.ty='amt';if(!F.u)F.u='تومان';const g=cnGet(CNKEY.goal,[]);if(!F.gid&&g.length)F.gid=g[0].id}else if(F.lk==='tx'){F.ty='cnt';if(!(num(F.tv)>0))F.tv='1'}formSheet();return}
+document.addEventListener('change',e=>{
  if(e.target.id==='csvf'&&e.target.files[0]){importCsv(e.target.files[0]);e.target.value=''}
  if(e.target.id==='nt'&&e.target.value){D.set.nudgeT=e.target.value;save();toast('ساعت یادآور شبانه ذخیره شد')}
  if(e.target.id==='rsf'&&e.target.files[0]){restore(e.target.files[0]);e.target.value=''}});
@@ -660,7 +677,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!R.sheet)
 
 /* ---------- themes ---------- */
 const THEMES={gold:{n:'طلایی',y:'#ffd23f',yr:'255,210,63',t:'#1fd1c1',tr:'31,209,193'},tiffany:{n:'تیفانی',y:'#1fd1c1',yr:'31,209,193',t:'#ffd23f',tr:'255,210,63'},sky:{n:'آبی',y:'#5bc0ff',yr:'91,192,255',t:'#7ee8d2',tr:'126,232,210'}};
-function applyTheme(){const th=THEMES[D.set.theme]||THEMES.gold,r=document.documentElement.style;r.setProperty('--y',th.y);r.setProperty('--yr',th.yr);r.setProperty('--t',th.t);r.setProperty('--tr',th.tr);let m=D.set.mode||'dark';if(m==='auto')m=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';document.documentElement.dataset.mode=m;const tc=document.getElementById('tcm');if(tc)tc.content=m==='light'?'#f2f4f8':'#000000'}
+function applyTheme(){const th=THEMES[D.set.theme]||THEMES.gold,r=document.documentElement.style;r.setProperty('--y',th.y);r.setProperty('--yr',th.yr);r.setProperty('--t',th.t);r.setProperty('--tr',th.tr);let m=D.set.mode||'dark';if(m==='auto')m=(window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)?'light':'dark';document.documentElement.dataset.mode=m;document.documentElement.dataset.ico=D.set.ico==='line'?'line':'normal';const tc=document.getElementById('tcm');if(tc)tc.content=m==='light'?'#f2f4f8':'#000000'}
 /* ---------- freeze ---------- */
 function fzRemain(d){const j=jp(d);let c=0;Object.keys(D.frozen).forEach(k=>{const x=jp(k);if(x[0]===j[0]&&x[1]===j[1])c++});return Math.max(0,2-c)}
 function toggleFreeze(){const d=R.sel;if(D.frozen[d]){delete D.frozen[d];save();render();toast('فریز لغو شد');return}
@@ -686,9 +703,9 @@ function bctx(){const sk=streaks(null);let comp=0;Object.keys(D.logs).forEach(d=
 function checkBadges(silent){if(R.noChk)return;D.chal.forEach(ch=>{if(!ch.done&&chalCount(ch)>=ch.t){ch.done=todayIso();if(!silent)setTimeout(()=>celebrate('🎯 چالش «'+ch.n+'» تمام شد!'),900)}});const c=bctx();let n=0;BADGES.forEach(b=>{if(!D.badges[b.id]&&b.f(c)){D.badges[b.id]=todayIso();n++;if(!silent)setTimeout(()=>toast('🏅 نشان جدید: '+b.n),1700)}});const xp=c.comp*10+c.days*30+Math.floor(c.tm/10)+Object.keys(D.badges).length*50+D.chal.filter(x=>x.done).length*100,lv=Math.floor(Math.sqrt(xp/50))+1;D.stats.xp=xp;if(lv>(D.stats.lv||1)&&!silent)setTimeout(()=>{toast('⭐ سطح '+lv+' شد!');chime(true)},2600);D.stats.lv=lv;save()}
 function bdgCard(){const n=BADGES.filter(b=>D.badges[b.id]).length;return '<div class="card"><h3>نشان‌ها <span class="num" style="color:var(--mu);font-weight:600;font-size:13px">('+n+' از '+BADGES.length+')</span></h3><div class="bdg">'+BADGES.map(b=>'<div class="'+(D.badges[b.id]?'on':'')+'"><span>'+b.e+'</span><b>'+b.n+'</b><small>'+b.d+'</small></div>').join('')+'</div></div>'}
 /* ---------- celebration ---------- */
-const QUOTES=['هر روز یک قدم کوچک؛ در آخر یک مسیر بزرگ.','امروز را بردی. فردا هم همین‌طور ادامه بده.','ثبات از استعداد قوی‌تر است.','کارِ امروزت، جایزه‌ی فردای توست.','عادت‌های خوب آرام‌آرام زندگی را عوض می‌کنند.','یک روز کامل دیگر و رکوردت بالاتر می‌رود.','به خودت افتخار کن؛ همه‌ی کارهای امروز انجام شد.'];
+const QUOTES=['هر روز یک قدم کوچک؛ در آخر یک مسیر بزرگ.','امروز را بردی. فردا هم همین‌طور ادامه بده.','ثبات از استعداد قوی‌تر است.','کارِ امروزت، جایزه‌ی فردای توست.','عادت‌های خوب آرام‌آرام زندگی را عوض می‌کنند.','یک روز کامل دیگر و رکوردت بالاتر می‌رود.','به خودت افتخار کن؛ همه‌ی کارهای امروز انجام شد.','امروز همه‌ی کارها را انجام دادی؛ این یعنی تعهد واقعی.','یک روز کامل دیگر به نام تو ثبت شد.','وقتی همه‌ی عادت‌ها تیک می‌خورند، آرامش خاصی می‌آید؛ از آن لذت ببر.','امشب با خیال راحت بخواب؛ امروز را درست زندگی کردی.','این همان ثباتی است که زندگی را تغییر می‌دهد.','همه‌ی عادت‌هایت انجام شد؛ تو واقعاً قهرمانی.','هیچ بهانه‌ای امروز برنده نشد.','امروز را کامل بستی؛ فردا از همین‌جا شروع می‌کنی.','روزی که با همه‌ی کارها تمام می‌شود، ارزش یادآوری دارد.','این کارنامه‌ی امروز توست: کامل.','امروز نشان دادی که حرف و عملت یکی است.','زنجیره‌ات محکم‌تر شد؛ نگذار پاره شود.','وقتش است کمی به خودت پاداش بدهی.','همه‌ی کارها تمام شد؛ حالا استراحت حق توست.','تو از کسانی هستی که قولشان را نگه می‌دارند.','امروز یک روز عالی بود و تو ساختیش.','هر روز کامل، یک آجر محکم برای ساختمان آینده است.','نظمِ امروز، آزادیِ فرداست؛ آفرین!','به این حس خوب عادت کن؛ شایسته‌اش هستی.','کسی که تا آخر می‌رود، همین است.','همه‌ی مراحل را رفتی؛ خط پایان امروز مال توست.','سخت بود؟ شاید. ولی تمامش کردی.','روز کامل امروز پیامی است برای فردا: «من آماده‌ام».','چنین روزهایی تو را می‌سازند.','صد در صد! این اتفاق ساده‌ای نیست.','هر ستاره‌ی امروز را خودت به دست آوردی.','آدم‌های بزرگ روزهای کامل می‌سازند؛ مثل همین امروز.','چه روز درخشانی! یک نفس عمیق بکش و لذت ببر.','امروز بیش از آنچه فکر می‌کنی پیشرفت کردی.','تو الگوی خودِ فردایت هستی.','انضباط یعنی این: انجام دادن، حتی وقتی نمی‌خواهی.','هر روز کامل، پیوندی محکم‌تر با نسخه‌ی بهتر خودت.','هیچ تیکی جا نماند؛ به‌به!','با این روند، سال دیگر جای دیگری هستی.','امروز بی‌نقص بودی؛ و همین کافی است.','افتخار کن؛ از عهده‌ی همه‌ی کارها برآمدی.','روزت را برنده تمام کردی.','عادت‌هایت را می‌سازی و آن‌ها تو را می‌سازند.','یک روز دیگر، یک پله بالاتر.','همین روزهای کامل، یک زندگی کامل می‌سازند.','امروز به قولت وفادار ماندی؛ فردا هم می‌شود.','آرام و محکم، تمام شد.','هر وقت خسته شدی، یادت بیاید که امروز همه را انجام دادی.','نتیجه‌ی ثبات، روزهای کاملی مثل امروز است.','این انرژی را به فردا ببر.','هرچه کاشتی، دارد ریشه می‌دواند.','روز خوبی بود؛ خودت را تحسین کن!','امروز یک نفر به هدفش وفادار ماند؛ و آن تو بودی.','قشنگ بود! امشب حق داری سرحال باشی.','چرخه‌ی خوب ادامه دارد؛ فردا هم می‌توانی.','مثل ساعت دقیق عمل می‌کنی.','این روز کامل را به یاد بسپار و تکرارش کن.','امروز را بردی، و این برد مال خودت است.'];
 function checkAllDone(){const T=todayIso();if(R.sel!==T||D.cel[T])return;const a=D.habits.filter(h=>active(h,T));if(!a.length||!a.every(h=>prog(h,T)>=1))return;D.cel[T]=1;save();setTimeout(celebrate,450)}
-function celebrate(title){$('#celh').textContent=title||'همه‌ی عادت‌های امروز کامل شد!';chime(true);$('#celq').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];$('#cel').classList.add('on');const cols=['#ffd23f','#1fd1c1','#7ee8d2','#5bc0ff','#edeff3','#ffb547'];let h='';for(let i=0;i<70;i++)h+='<i style="left:'+(Math.random()*100)+'%;background:'+cols[i%cols.length]+';--dx:'+Math.round(Math.random()*160-80)+'px;--r:'+Math.round(Math.random()*720-360)+'deg;animation-delay:'+(Math.random()*.5).toFixed(2)+'s;animation-duration:'+(1.8+Math.random()*1.4).toFixed(2)+'s"></i>';$('#conf').innerHTML=h;setTimeout(()=>{$('#conf').innerHTML=''},4200);vib();checkBadges()}
+function celebrate(title){hideCheer();$('#celh').textContent=title||'همه‌ی عادت‌های امروز کامل شد!';chime(true);$('#celq').textContent=QUOTES[Math.floor(Math.random()*QUOTES.length)];$('#cel').classList.add('on');const cols=['#ffd23f','#1fd1c1','#7ee8d2','#5bc0ff','#edeff3','#ffb547'];let h='';for(let i=0;i<70;i++)h+='<i style="left:'+(Math.random()*100)+'%;background:'+cols[i%cols.length]+';--dx:'+Math.round(Math.random()*160-80)+'px;--r:'+Math.round(Math.random()*720-360)+'deg;animation-delay:'+(Math.random()*.5).toFixed(2)+'s;animation-duration:'+(1.8+Math.random()*1.4).toFixed(2)+'s"></i>';$('#conf').innerHTML=h;setTimeout(()=>{$('#conf').innerHTML=''},4200);vib();checkBadges()}
 /* ---------- reminders ---------- */
 function hm(d){return pad(d.getHours())+':'+pad(d.getMinutes())}
 function notify(t,b){toast(t+' — '+b);if(D.set.notif&&window.Notification&&Notification.permission==='granted'){try{new Notification(t,{body:b,tag:t+b})}catch(e){}}}
@@ -705,7 +722,7 @@ let wl=null;
 function showFocus(id){const h=H(id);if(!h)return;if(D.timer&&D.timer.id!==id){toast('تایمر یک عادت دیگر در حال اجراست');return}
  if(!D.timer){D.timer={id:id,start:Date.now()};save()}
  R.focus=id;closeSheet();render();
- $('#foc').innerHTML='<span class="fe">'+h.e+'</span><b class="fn">'+esc(h.n)+'</b><span class="rg fr" id="fring"><span id="fsv"></span><b class="num" id="fcl"></b></span><p class="num fh" id="fh"></p><div class="two" style="width:100%;max-width:340px"><button class="btn t blk" data-fstop="1">■ پایان و ثبت</button><button class="btn g blk" data-fclose="1">کوچک کردن</button></div>';
+ $('#foc').innerHTML='<span class="fe hico">'+h.e+'</span><b class="fn">'+esc(h.n)+'</b><span class="rg fr" id="fring"><span id="fsv"></span><b class="num" id="fcl"></b></span><p class="num fh" id="fh"></p><div class="two" style="width:100%;max-width:340px"><button class="btn t blk" data-fstop="1">■ پایان و ثبت</button><button class="btn g blk" data-fclose="1">کوچک کردن</button></div>';
  $('#foc').classList.add('on');updFocus();
  try{if(navigator.wakeLock)navigator.wakeLock.request('screen').then(l=>{wl=l}).catch(()=>{})}catch(e){}}
 function updFocus(){const h=H(R.focus);if(!h||!D.timer||!$('#fcl'))return;const ms=Date.now()-D.timer.start,T=iso(new Date(D.timer.start)),done=val(h.id,T)+ms/60000,p=Math.min(1,done/h.tg);
@@ -716,14 +733,24 @@ function closeFocus(){R.focus=null;$('#foc').classList.remove('on');$('#foc').in
 /* ---------- sound ---------- */
 let ac=null;
 function chime(big){if(!D.set.snd)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const t0=ac.currentTime;(big?[523,659,784,1047]:[660,880]).forEach((f,i)=>{const o=ac.createOscillator(),g=ac.createGain(),t=t0+i*.11;o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(.15,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+.35);o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+.4)})}catch(e){}}
-function cheer(h){toast('🎉 «'+h.n+'» کامل شد');chime(false);vib()}
+const MOTIV=['آفرین! یک قدم دیگر به هدفت نزدیک\u200cتر شدی.','عالی بود! همین ثبات است که تو را می\u200cسازد.','کارت درست بود؛ همین\u200cطور ادامه بده.','تمام شد! حق داری به خودت افتخار کنی.','هر روز یک قدم کوچک، آخرش یک تغییر بزرگ.','تو می\u200cتوانی، و داری ثابتش می\u200cکنی.','دمت گرم! امروز هم سنگ\u200cتمام گذاشتی.','یک پیروزی دیگر در کارنامه\u200cات ثبت شد.','استمرار از استعداد قوی\u200cتر است؛ ادامه بده.','همین حالا یک عادت خوب را محکم\u200cتر کردی.','«{n}» امروز مال توست!','بدون بهانه و بدون وقفه؛ این یعنی قهرمان.','کار را انجام دادی؛ حالا حس خوبش را بچش.','پیشرفت یعنی همین کارهای ساده که هر روز تکرار می\u200cشوند.','خودِ فردایت از تو ممنون است.','امروز هم به قولی که به خودت دادی عمل کردی.','این همان کاری است که آدم\u200cهای موفق هر روز می\u200cکنند.','کوچک شروع کردی، بزرگ ادامه می\u200cدهی.','انگیزه می\u200cآید و می\u200cرود، اما تو با عادت جلو می\u200cروی.','یک تیک دیگر؛ مسیرت روشن\u200cتر شد.','بابت «{n}» دستت درد نکند!','هیچ چیز ارزشمندتر از ادامه دادن نیست.','امروز بهتر از دیروز شدی.','همین قدم\u200cهای کوچک زندگی را عوض می\u200cکنند.','تمرکزت تحسین\u200cبرانگیز بود.','این انرژی را نگه دار!','وقتی ادامه می\u200cدهی، دیگر کسی جلودارت نیست.','یک بار دیگر ثابت کردی که می\u200cتوانی.','داری نسخه\u200cی بهتری از خودت را می\u200cسازی.','آرام و پیوسته؛ برنده همین است.','«{n}» انجام شد؛ بقیه\u200cاش هم شدنی است.','عالی! یک نفس عمیق و سراغ بعدی.','هر بار که تمامش می\u200cکنی، اعتمادبه\u200cنفست بیشتر می\u200cشود.','پشتکارت الهام\u200cبخش است.','امروز هم از کسانی بودی که تسلیم نشدند.','هرچه جلوتر می\u200cروی، راحت\u200cتر می\u200cشود.','این یعنی نظم، و نظم یعنی آزادی.','خسته نباشی! کار کوچکی نبود.','یک امتیاز دیگر برای تو، صفر برای بهانه\u200cها.','تو همین حالا از دیروزِ خودت جلوتری.','عادت\u200cها را تو می\u200cسازی، بعدش آن\u200cها تو را می\u200cسازند.','قشنگ بود! همین مسیر را ادامه بده.','امروز یک خشت دیگر روی ساختمان آینده\u200cات گذاشتی.','هر تیک، یک رأی به نسخه‌ی بهتر خودت است.','کارِ کوچک، اثرِ بزرگ؛ همین را ادامه بده.','امروز هم دست‌خالی برنگشتی.','همین الان ثابت کردی که حرفت را جدی می‌گیری.','آفرین بر اراده‌ات!','قدم‌های کوچک، پاهای محکم می‌سازند.','عالی پیش می‌روی؛ سرعتت را حفظ کن.','«{n}» هم رفت توی کارنامه‌ات!','این یکی هم از بهانه‌ها جلو زد.','تو برای مسیر ارزش قائلی، نه فقط نتیجه.','امروز هم یک گام جلوتر از دیروز.','خوب است که برای خودت وقت می‌گذاری.','ادامه بده؛ نتیجه‌اش را بعداً خواهی دید.','چه کار قشنگی! همین‌طور پیش برو.','وفاداری به خودت، بهترین سرمایه‌گذاری است.','هیچ‌کس جای تو این کار را نمی‌کند، و تو کردی.','دستت درد نکند؛ خودت را تشویق کن.','پیوسته بودن، سخت‌ترین و باارزش‌ترین کار است.','نظم امروز، آرامش فردا.','با «{n}» یک قدم محکم‌تر شدی.','هر بار که انجامش می‌دهی، مسیر هموارتر می‌شود.','تو سازنده‌ی زندگی‌ای هستی که می‌خواهی.','چه روز خوبی برای ثابت‌قدم ماندن!','این پیروزی کوچک، پایه‌ی پیروزی‌های بزرگ است.','بدون هیاهو، فقط با پیوستگی؛ و همین کافی است.','حالا می‌توانی با خیال راحت لبخند بزنی.','اراده‌ات را دوباره به رخ کشیدی.','کار امروز را همین امروز تمام کردی؛ بی‌نظیر!','استقامتت یک روز دیگر برنده شد.','رمز موفقیت همین است: ادامه دادن.','یک گام کوچک دیگر، یک روز بهتر.','لذتِ انجام‌دادن را حس کن؛ حقت است.','«{n}» حالا بخشی از روتین توست.','هر عادت خوب یک هدیه به آینده‌ی توست.','تلاش امروزت، حال خوب فردایت است.','خسته نباشی، قهرمان!','با این روند، هیچ هدفی دور نیست.','مثل یک حرفه‌ای عمل کردی.','از پس‌اش برآمدی!','تمام‌کردن یک مهارت است و تو در آن ماهری.','نگفتی «بعداً»، نگفتی «فردا»؛ گفتی «همین حالا».','هر روز که ادامه می‌دهی، عادتت قوی‌تر می‌شود.','خودت را دست‌کم نگیر؛ دیدی که شد؟','این حس خوب را به یاد بسپار؛ فردا هم می‌خواهیش.','همین سادگی، همین قدرت.','پیشرفت همیشه پرسروصدا نیست؛ مثل همین کار آرام است.','هنوز راه مانده، اما تو راه را بلدی.','به خودت بگو: آفرین!','امروز را با یک تیک دیگر زیباتر کردی.','کسی که شروع کند و ادامه دهد، بالاخره می‌رسد.','قدرتِ تکرار همین‌جاست.','چه ثباتی! ادامه بده.','هر روز کمی بهتر؛ شعارِ تو.','با «{n}» روزت رنگ و بوی دیگری گرفت.','بدون انگیزه هم انجامش دادی؛ این یعنی انضباط.','باز هم خودت را شگفت‌زده کردی.','دمت گرم؛ بقیه‌ی روز هم با همین انرژی.'];
+let motBag=[],motLast=-1,cheerT=null;
+function nextMot(){if(!motBag.length){motBag=MOTIV.map((_,i)=>i);for(let i=motBag.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[motBag[i],motBag[j]]=[motBag[j],motBag[i]]}if(motBag[motBag.length-1]===motLast){motBag.unshift(motBag.pop())}}motLast=motBag.pop();return MOTIV[motLast]}
+function hideCheer(){clearTimeout(cheerT);const c=$('#cheer');if(c)c.classList.remove('on')}
+function cheer(h){
+ const T=todayIso(),sk=R.sel===T?streaks(h.id).cur:0,msg=nextMot().replace(/\{n\}/g,h.n);
+ const dir=[[-48,-32],[0,-54],[48,-32],[58,6],[46,42],[0,56],[-46,42],[-58,6]];
+ const sp=dir.map((q,i)=>'<i style="--dx:'+q[0]+'px;--dy:'+q[1]+'px;animation-delay:'+(.18+i*.03).toFixed(2)+'s'+(i%2?';background:var(--y)':'')+'"></i>').join('');
+ const c=$('#cheer');c.style.setProperty('--c',h.c);c.style.setProperty('--d','4.8s');
+ c.innerHTML='<div class="chc"><span class="chb">'+sp+hi(h.e)+'<em>✓</em></span><div class="cht"><div class="cht1"><b>«'+esc(h.n)+'» کامل شد</b>'+(sk>=2?'<span class="chs num">🔥 '+sk+' روز پیاپی</span>':'')+'</div><p class="cht2">'+esc(msg)+'</p></div><span class="chw"><i class="chm"></i></span></div>';
+ c.classList.add('on');clearTimeout(cheerT);cheerT=setTimeout(hideCheer,4800);chime(false);vib()}
 /* ---------- steps (multi-step habits) ---------- */
 function subOf(id,d){const h=H(id);return((D.sub[d]&&D.sub[d][id])||[]).filter(i=>h&&i<h.st.length)}
 function chkSheet(h){const d=R.sel,ck=subOf(h.id,d);
- openSheet('<div class="sh"><span class="e">'+h.e+'</span><div><b>'+esc(h.n)+'</b><span class="num">'+WD[wd(d)]+' '+jl(d)+'</span></div></div><div class="big">'+rowHTML(h,ck.length,false)+'</div><div class="stl">'+h.st.map((s,i)=>'<button class="stp'+(ck.includes(i)?' on':'')+'" data-stp="'+i+'"><span class="bx">'+(ck.includes(i)?'✓':'')+'</span>'+esc(s)+'</button>').join('')+'</div><div class="two"><button class="btn g" data-edit="'+h.id+'">✎ ویرایش عادت</button><button class="btn r" data-zero="'+h.id+'">↺ صفر کردن</button></div>')}
+ openSheet('<div class="sh"><span class="e hico">'+h.e+'</span><div><b>'+esc(h.n)+'</b><span class="num">'+WD[wd(d)]+' '+jl(d)+'</span></div></div><div class="big">'+rowHTML(h,ck.length,false)+'</div><div class="stl">'+h.st.map((s,i)=>'<button class="stp'+(ck.includes(i)?' on':'')+'" data-stp="'+i+'"><span class="bx">'+(ck.includes(i)?'✓':'')+'</span>'+esc(s)+'</button>').join('')+'</div><div class="two"><button class="btn g" data-edit="'+h.id+'">✎ ویرایش عادت</button><button class="btn r" data-zero="'+h.id+'">↺ صفر کردن</button></div>')}
 function fillDone(h,d){if(h.ty==='chk'){if(!D.sub[d])D.sub[d]={};D.sub[d][h.id]=h.st.map((_,i)=>i)}setVal(h.id,d,h.tg)}
 /* ---------- catch-up ---------- */
-function missed(){const T=todayIso(),out=[];for(let i=1;i<=7;i++){const d=addDays(T,-i);if(D.frozen[d])continue;const hs=D.habits.filter(h=>!isAuto(h)&&active(h,d)&&prog(h,d)<1);if(hs.length)out.push({d:d,hs:hs})}return out}
+function missed(){const T=todayIso(),out=[];for(let i=1;i<=7;i++){const d=addDays(T,-i);if(D.frozen[d])continue;const hs=D.habits.filter(h=>active(h,d)&&prog(h,d)<1);if(hs.length)out.push({d:d,hs:hs})}return out}
 function catchSheet(){const m=missed();R.sheet={t:'catch'};
  openSheet('<div class="sh"><span class="e">🕘</span><div><b>جبران روزهای گذشته</b><span>هر کدام را که انجام داده بودی، بزن</span></div></div>'+(m.length?m.map(x=>'<div class="lbl num">'+WD[wd(x.d)]+' '+jl(x.d)+'</div><div class="cuw">'+x.hs.map(h=>'<button data-cu="'+h.id+'|'+x.d+'" style="--c:'+h.c+'">'+h.e+' '+esc(h.n)+'</button>').join('')+'</div>').join(''):'<div class="empty"><span class="em">✅</span>همه‌ی ۷ روز گذشته کامل است.</div>'))}
 /* ---------- challenges ---------- */
@@ -770,7 +797,7 @@ function reportSheet(y,m){R.sheet={t:'rep'};const d=reportData(y,m),g=grade(d.r)
  +'<div class="rate" style="margin-bottom:14px"><span class="rg'+(d.r>=1?' full':'')+(d.r<=0?' z':'')+'">'+ring(d.r,16)+'<b class="num">'+Math.round(d.r*100)+'%<small>میانگین ماه</small></b></span><span class="num" style="color:'+(dl>=0?'var(--t)':'#ff8a80')+'">'+(dl>=0?'▲ ':'▼ ')+Math.abs(dl)+'% نسبت به ماه قبل</span></div>'
  +'<div class="stats"><div class="stat"><span class="ic">✅</span><b class="num">'+d.perfect+'<small>روز</small></b><span>روز کامل</span></div><div class="stat"><span class="ic">🎯</span><b class="num">'+d.comp+'</b><span>تکمیل عادت</span></div>'
  +'<div class="stat"><span class="ic">💪</span><b style="font-size:16px">'+(d.hs[0]?d.hs[0].h.e+' '+esc(d.hs[0].h.n):'—')+'</b><span>بهترین عادت</span></div><div class="stat"><span class="ic">📅</span><b class="num" style="font-size:18px">'+(d.bw?'هفته‌ی '+d.bw.i:'—')+'</b><span>بهترین هفته</span></div></div>'
- +'<div class="lbl">به تفکیک عادت</div>'+d.hs.map(x=>'<div class="hb"><span class="e">'+x.h.e+'</span><div class="m"><div><span>'+esc(x.h.n)+'</span><b class="num">'+Math.round(x.r*100)+'%</b></div><div class="bar"><i style="width:'+(x.r*100).toFixed(1)+'%;background:'+x.h.c+'"></i></div></div></div>').join('')
+ +'<div class="lbl">به تفکیک عادت</div>'+d.hs.map(x=>'<div class="hb"><span class="e hico">'+x.h.e+'</span><div class="m"><div><span>'+esc(x.h.n)+'</span><b class="num">'+Math.round(x.r*100)+'%</b></div><div class="bar"><i style="width:'+(x.r*100).toFixed(1)+'%;background:'+x.h.c+'"></i></div></div></div>').join('')
  +'<button class="btn blk" data-rimg="1" style="margin-top:14px">🖼 ذخیره به‌صورت تصویر</button>')}
 function dlFile(name,data,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},600)}
 function drawReport(y,m){const d=reportData(y,m),g=grade(d.r),th=THEMES[D.set.theme]||THEMES.gold;const W=1080,HH=1500,c=document.createElement('canvas');c.width=W;c.height=HH;const x=c.getContext('2d');
@@ -802,12 +829,12 @@ function srow(ico,cls,title,sub,ctl){return '<div class="rw2"><span class="ico '
 function sbtn(ico,cls,title,sub,attr){return '<button class="rw2" '+attr+'="1"><span class="ico '+cls+'">'+ico+'</span><div class="tx"><b>'+title+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</div><span class="ar">‹</span></button>'}
 function vSet(){
  const xp=D.stats.xp||0,lv=D.stats.lv||1,lo=50*(lv-1)*(lv-1),hi=50*lv*lv,p=Math.max(0,Math.min(1,(xp-lo)/(hi-lo))),nb=Object.keys(D.badges).length,mode=D.set.mode||'dark';
+ const icoSeg='<div class="mseg">'+[['normal','عادی'],['line','خطی']].map(a=>'<button data-ic="'+a[0]+'" class="'+((D.set.ico||'normal')===a[0]?'on':'')+'">'+a[1]+'</button>').join('')+'</div>';
  const modeSeg='<div class="mseg">'+[['dark','تاریک'],['light','روشن'],['auto','خودکار']].map(a=>'<button data-md="'+a[0]+'" class="'+(mode===a[0]?'on':'')+'">'+a[1]+'</button>').join('')+'</div>';
  const themes='<div class="ths">'+Object.keys(THEMES).map(k=>'<button data-th="'+k+'" class="'+(D.set.theme===k?'on':'')+'" style="--a:'+THEMES[k].y+';--b:'+THEMES[k].t+'"><i></i><span>'+THEMES[k].n+'</span></button>').join('')+'</div>';
  return '<div class="hd"><div class="ttl"><h1>تنظیمات</h1></div></div>'
  +'<div class="prof"><span class="av num">'+lv+'</span><div class="pi"><b>سطح '+lv+'</b><span class="num">'+xp+' امتیاز · '+nb+' نشان · '+Math.max(0,hi-xp)+' امتیاز تا سطح بعد</span><div class="bar"><i style="width:'+(p*100).toFixed(1)+'%"></i></div></div></div>'
- +(IN?'<div class="gt">کندو</div><div class="grp">'+sbtn('💰','b','باز کردن کندو','مدیریت هزینه‌ها، بودجه و پس‌انداز','data-opencn')+'</div>':'')
- +'<div class="gt">ظاهر</div><div class="grp">'+srow('🌗','b','حالت نمایش','',modeSeg)+'<div class="rw2 wr"><span class="ico">🎨</span><div class="tx"><b>رنگ اصلی</b></div>'+themes+'</div></div>'
+ +'<div class="gt">ظاهر</div><div class="grp">'+srow('🌗','b','حالت نمایش','',modeSeg)+srow('🧩','t','سبک آیکن عادت‌ها','',icoSeg)+'<div class="rw2 wr"><span class="ico">🎨</span><div class="tx"><b>رنگ اصلی</b></div>'+themes+'</div></div>'
  +'<div class="gt">یادآوری‌ها</div><div class="grp">'+srow('🔔','t','اعلان مرورگر','فقط وقتی برنامه باز یا در پس‌زمینه‌ی مرورگر است',sw('data-notif',D.set.notif,'اعلان'))+srow('🌙','b','یادآور شبانه','اگر عادتی ناتمام ماند',sw('data-nudge',D.set.nudge,'یادآور شبانه'))+(D.set.nudge?srow('⏰','g','ساعت یادآور','','<input type="time" id="nt" value="'+D.set.nudgeT+'" style="width:104px;padding:8px">'):'')+'</div>'
  +'<div class="gt">بازخورد</div><div class="grp">'+srow('📳','g','لرزش','',sw('data-vib',D.set.vib,'لرزش'))+srow('🔊','g','صدا','موقع کامل شدن عادت',sw('data-snd',D.set.snd,'صدا'))+'</div>'
  +'<div class="gt">داده‌ها</div><div class="grp">'+sbtn('💾','t','ذخیره‌ی بکاپ','فایل کامل برای نگهداری','data-bk')+sbtn('📥','t','بازیابی از بکاپ','','data-rs')+sbtn('📊','b','خروجی CSV','برای اکسل و گوگل‌شیت','data-csv')+sbtn('📤','b','واردکردن CSV','با همان قالب خروجی','data-csvin')+'</div>'
@@ -815,36 +842,6 @@ function vSet(){
  +'<input type="file" id="rsf" accept=".json,application/json" hidden><input type="file" id="csvf" accept=".csv,text/csv" hidden>'
  +'<div class="ver">عادت‌ها · نسخه‌ی <span dir="ltr">1.2.0</span></div>'}
 if(window.matchMedia)try{matchMedia('(prefers-color-scheme: light)').addEventListener('change',()=>{if((D.set.mode||'dark')==='auto')applyTheme()})}catch(e){}
-
-/* ---------- CANdo link (works inside the combined app) ---------- */
-const IN=window.parent!==window;
-const CNKEY={tx:'dakhl-kharj-v1',goal:'dakhl-sgoal-v1',ins:'dakhl-inst-v1',dbt:'dakhl-debt-v1'};
-function cnGet(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}}
-let CN=null;
-function cnIdx(){if(CN)return CN;const items=cnGet(CNKEY.tx,[]),cnt={};
- items.forEach(x=>{if(x&&x.d)cnt[x.d]=(cnt[x.d]||0)+1});
- CN={cnt:cnt};return CN}
-const isAuto=h=>!!(h&&h.lk&&h.lk.k==='tx');
-function cnDeposit(gid,delta){if(!delta)return;const goals=cnGet(CNKEY.goal,[]),g=goals.find(x=>String(x.id)===String(gid));if(!g)return;
- g.s=Math.max(0,(+g.s||0)+delta);try{localStorage.setItem(CNKEY.goal,JSON.stringify(goals))}catch(e){return}
- try{parent.postMessage({t:'cn-changed'},'*')}catch(e){}
- setTimeout(()=>toast((delta>0?'➕ ':'➖ ')+nf(Math.abs(delta))+' تومان '+(delta>0?'به':'از')+' هدف «'+g.n+'»'),700)}
-function goCN(){try{parent.postMessage({t:'cn-go',to:'cando'},'*')}catch(e){}}
-function dLab(d){return d<0?nf(-d)+' روز گذشته':d===0?'امروز':d===1?'فردا':nf(d)+' روز دیگر'}
-function cnBanner(){
- if(!IN||R.tab!=='home'||R.sel!==todayIso())return '';
- const T=todayIso(),rows=[];
- cnGet(CNKEY.ins,[]).forEach(x=>{if(!x||!(x.a>0)||!x.nd||!x.day)return;if(x.total>0&&x.paid>=x.total)return;const y=Math.floor(x.nd/100),m=x.nd%100,iso=fromJ(y,m,Math.min(x.day,jmLen(y,m))),d=Math.round((fromIso(iso)-fromIso(T))/864e5);if(d<=3)rows.push({d:d,t:'قسط «'+x.n+'»',a:x.a})});
- cnGet(CNKEY.dbt,[]).forEach(x=>{if(!x||x.done||!x.due)return;const d=Math.round((fromIso(x.due)-fromIso(T))/864e5);if(d<=3)rows.push({d:d,t:(x.dir==='lend'?'طلب از ':'بدهی به ')+x.w,a:x.a})});
- rows.sort((a,b)=>a.d-b.d);
- const line='';
- if(!rows.length)return '';
- return '<button class="cnb" data-opencn="1"><span class="ci">💰</span><div class="cm">'+rows.slice(0,3).map(r=>'<div class="cl'+(r.d<0?' neg':'')+' num">⏰ '+dLab(r.d)+' · '+r.t+' · '+nf(r.a)+'</div>').join('')+'</div><span class="ar">‹</span></button>'}
-window.addEventListener('storage',e=>{CN=null;if(e.key&&e.key.indexOf('dakhl-')===0)render()});
-window.addEventListener('message',e=>{const m=e.data;if(m&&m.t==='cn-refresh'){CN=null;render()}});
-function autoSheet(h){R.sheet={t:'auto'};const T=R.sel;
- const note='هر تراکنشی که در کندو ثبت کنی، برای همان روز شمرده می‌شود. هدف: '+nf(h.tg)+' تراکنش در روز.';
- openSheet('<div class="sh"><span class="e">'+h.e+'</span><div><b>'+esc(h.n)+'</b><span>این عادت خودکار از کندو پر می‌شود</span></div></div><div class="big">'+rowHTML(h,val(h.id,T),false)+'</div><p style="color:var(--g);font-size:13.5px;line-height:2;margin:14px 2px">'+note+'</p><div class="two"><button class="btn t" data-opencn="1">باز کردن کندو</button><button class="btn g" data-edit="'+h.id+'">✎ ویرایش</button></div>')}
 
 applyTheme();checkBadges(true);render();setTimeout(tick,1500);
 
